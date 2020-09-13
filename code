@@ -1,0 +1,1617 @@
+//This is a code to run a searching algorithm to simulate a buying experience using video games, including a payment option
+
+
+import java.util.*;
+
+class STEA_STORE
+{
+    String name;
+    String game[]={"No Man's Sky", "Call of Duty: Advanced Warfare", "Just Cause 3", "Life is Strange", "Dark Souls III", "Overwatch", "Team Fortress 2", "Minecraft", "Watch_Dogs", "Watch_Dogs 2", "Fifa 16", "Fifa 17", "Mirror's Edge: Catalyst", "Batman: Arkham Knight", "PewDiePie: Legend of the Brofist", "Far Cry: Primal", "Assassin's Creed Syndicate", "NBA 2K17", "Fallout 4", "The Witcher 3: Wild Hunt", "Undertale", "Rocket League", "Mortal Kombat X", "Need for Speed: Most Wanted", "Metal Gear Solid V: The Phantom Pain", "Rise of the Tomb Raider", "The Binding of Isaac: Afterbirth", "Pillars of Eternity", "Goat Simulator", "Ori and the Blind Forest", "StarCraft II: Legacy of the Void", "Her Story", "Titanfall", "Far Cry 4", "South Park: The Stick of Truth", "The Sims 4", "Five Nights at Freddy's ", "BioShock Infinite", "Minesweeper", "Assassin's Creed IV: Black Flag", "Dota 2", "Call of Duty: Ghosts", "Batman: Arkham Origins", "The Sims 3", "Lego Marvel Super Heroes", "Lego Batman", "Injustice: Gods Among Us", "Mass Effect 3", "Counter-Strike: Global Offensive", "Destiny", "The Last of Us", "The Elder Scrolls V: Skyrim", "Kentucky Route Zero", "Battlefield 3", "Portal 2", "Star Wars: The Old Republic", "Assassin's Creed: Revelations", "Sonic Generations", "Fallout: New Vegas", "Back to the Future: The Game", "Brian Lara International Cricket", "Fallout 3", "Far Cry 2", "Bear Simulator", "Plants vs. Zombies", "Battlefield 2142", "Half-Life 2", "Lego Star Wars: The Complete Saga", "Prince of Persia: The Sands of Time", "Max Payne", "Mass Effect: Andromeda", "Halo 5: Guardians", "For Honor", "Scalebound", "Pong"};
+
+
+      int year[]={2016, 2014, 2015, 2015, 2016, 2016, 2007, 2011, 2014, 2016, 2015, 2016, 2016, 2015, 2015, 2016, 2015, 2016, 2015, 2015, 2015, 2015, 2015, 2012, 2015, 2015, 2016, 2015, 2014, 2015, 2015, 2015, 2014, 2014, 2014, 2014, 2014, 2013, 1989, 2013, 2013, 2013, 2013, 2013, 2013, 2008, 2013, 2012, 2012, 2014, 2013, 2011, 2013, 2011, 2011, 2011, 2011, 2011, 2010, 2010, 2009, 2008, 2008, 2016, 2007, 2006, 2004, 2007, 2003, 2001, 2017, 2015, 2017, 2017, 1972};     
+
+
+     String genre[]={"Adventure", "First Person Shooter (FPS) ", "Action", "Adventure", "Adventure", " First Person Shooter (FPS) ", " First Person Shooter (FPS) ", "Adventure", "Action",  "Action" , "Sports", "Sports", "Action", "Action",  "Adventure", "Action and Adventure", " Action and Adventure ", "Sports", " Action and Adventure ", " Action and Adventure ", "Adventure", "Sports", "Action", "Sports", " Action and Adventure ", " Action and Adventure ", "Adventure", "Action", "Action", "Action", "Adventure", "Adventure", "Action", " Action and Adventure ", "Action", " Action and Adventure ", " Action and Adventure ", " First Person Shooter (FPS) ", "Action", "Adventure", " Action and Adventure ", " Action and Adventure " , "Action", " Action and Adventure ", " First Person Shooter (FPS)", " Action and Adventure ", "Action", " Action and Adventure ", "Adventure", "Action", "Adventure", "Action", " Action and Adventure ", " Action and Adventure ", " Action and Adventure ", "Adventure", "Action", " Action and Adventure ", " Action and Adventure ", "Adventure", "Sports", "Action", " Action and Adventure ", " Action and Adventure ", "Action", "Action", " Action and Adventure ", "Action", " Action and Adventure ", " Action and Adventure ", " Action and Adventure ", " Action and Adventure ", " Action and Adventure ", " Action and Adventure ", "Sports"};
+
+    
+     double cost[]={5934.99,  4219.99, 1729.99, 3729.99, 3709.99, 1899.99, 5029.99, 5839.99, 4039.99, 4599.99, 2799.99, 4249.99, 6299.99, 6269.99, 3929.99, 3600.00, 6759.99, 4639.99, 5019.99, 3139.99, 6939.99, 5000.00, 4069.99, 1369.99, 5339.99, 6459.99, 6245.00, 1350.00, 1710.00, 2359.99, 2399.99, 6299.99, 5729.99, 6409.99, 1299.99, 1510.00, 5129.99, 1680.00, 5765.00, 6275.00, 6620.00, 3609.99, 1825.00, 1720.00, 4660.00, 4535.00, 4505.00, 3095.00, 3135.00, 2959.99, 6280.00, 6579.99, 5635.00, 4379.99, 1970.00, 5239.99, 6279.99, 1265.00, 5400.00, 3275.00, 6669.99, 4130.00, 6355.00, 4779.99, 6024.00, 1240.00, 4359.99, 5960.00, 1650.00, 4810.00, 5865.00, 2275.00, 5590.00, 2410.00, 6789.99};
+
+
+
+    
+    String billitems[]= new String [100000];
+    double billcost[]= new double [100000];
+    int ctr1=0;
+    int ctr2=0;
+    Scanner sc= new Scanner (System.in);
+    Calendar c=Calendar.getInstance();
+    String address;
+    
+    void accept()
+    {
+        
+        
+       
+        System.out.println("  _____   _______   ______               ");
+        System.out.println(" / ____| |__   __| |  ____|     /\\    ");
+        System.out.println(" | (___     | |    |  |__      /  \\    ");
+        System.out.println(" \\___ \\     | |    |  __|     / /\\ \\  ");
+        System.out.println(" ____) |    | |    | |____   / ____ \\  ");
+        System.out.println("|_____/     |_|    |______| /_/    \\_\\ ");
+        
+        
+        System.out.println("Welcome to STEAM®~ The Ultimate Store for PC Games!");
+        
+        System.out.println("Please enter your name: ");
+        name=sc.nextLine();
+        
+        System.out.println("Enter Address for Delivery: ");
+        address=sc.nextLine();
+        choice();
+    }
+    void choice()
+    {
+        System.out.println("Hello! "+ name+ " plese select your choice: ");
+        System.out.println("1. Latest Releases");
+        System.out.println("2. Display by Genre");
+        System.out.println("3. Display by Year");
+        System.out.println("4. Search for a Particular Game");
+        int choice1=sc.nextInt();
+        System.out.println("\f");
+        switch (choice1)
+        {
+            case 1: latestreleases(); break;
+            case 2: displaybygenre(); break;
+            case 3: displaybyyear(); break;
+            case 4: search(); break;
+            default: System.out.println("Wrong choice!");
+            System.out.println("Press 1 to restart....");
+            int choice2=sc.nextInt();
+            if (choice2==1)
+            {
+                System.out.println("\f");
+                choice();
+            }
+        }
+        } 
+        
+    void search()
+    {
+        System.out.println(name+ " welcome to STEAM®~ Search section! ");
+        System.out.println("Choose on what basis you want to search");
+        System.out.println("1. By Name");
+        System.out.println("2. By Genre");
+        System.out.println("3. By Year");
+        int choice3=sc.nextInt();
+        switch (choice3)
+        {
+            case 1:
+            System.out.println("Enter phrase: ");
+            String gname=sc.next();
+    int flag=0;
+
+for (int i=0; i<game.length; i++)
+{
+  String word=game[i];
+  word+=" ";
+String wrd="";
+ for (int j=0; j<word.length(); j++)
+{
+char ch=word.charAt(j);
+if (ch==' ')
+{
+if (wrd.equalsIgnoreCase(gname))
+{
+    flag=-1;
+System.out.println("Search Succesful!");
+                    System.out.println("________________________________________________|");
+                    System.out.println("|					        |");
+                    System.out.println("|					        |");
+                    System.out.println("|					        |");                   
+                    System.out.println("|	"	+game[i]+"	                     |");
+                    System.out.println("|					        |");
+                    System.out.println("|					        |");
+                    System.out.println("|					        |");
+                    System.out.println("|					        |");
+                    System.out.println("|					        |");
+                    System.out.println("|					        |");			
+                    System.out.println("|_______________________________________________|");
+                    
+                    System.out.println("Cost: "+cost[i]);
+                    System.out.println("Genre: "+genre[i]);
+                    System.out.println("Year: "+year[i]);
+                    System.out.println("Do you want to buy this item? (Y/N): ");
+                    char choi=sc.next().charAt(0);
+                    if (choi=='y'|| choi=='Y')
+                    {
+                        System.out.println("\f");
+                        billitems[ctr1]=game[i];
+                        billcost[ctr2]=cost[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int m=sc.nextInt();
+                        if (m==1)
+                        bill();
+                        if (m==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                    }
+                    else if (choi=='n'||choi=='N')
+                    {
+                       System.out.println("\f");
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Search menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        choice();
+                        else if (x==2)
+                        search();
+                        else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                    }
+                    }
+                    else
+                    {
+                    System.out.print("Reenter choice (Y/N)");
+                    choi=sc.next().charAt(0);
+                  }
+
+wrd="";
+}
+}
+else
+wrd+=ch;
+
+}
+}
+
+if (flag==0)
+{
+    System.out.println("NO RESULTS FOUND....");
+    System.out.println("Press 1 to restart Search menu.....");
+    System.out.println("Press 2 to go back to main menu....");
+    int h=sc.nextInt();
+    
+    if (h==1)
+    search();
+    else if (h==2)
+    choice();
+    else
+    {
+    System.out.println("Wrong number entered... Please do so again");
+    h=sc.nextInt();
+}
+}
+    
+break;
+
+
+case 2:
+displaybygenre();
+break;
+
+case 3:
+displaybyyear();
+break;
+
+default:
+System.out.println("Wrong number entered");
+System.out.println("Press 1 to restart Search menu.....");
+    System.out.println("Press 2 to go back to main menu....");
+    int h=sc.nextInt();
+    if (h==1)
+    search();
+    else if (h==2)
+    choice();
+    else
+    {
+    System.out.println("Wrong number entered... Please do so again");
+    h=sc.nextInt();
+}
+
+
+}
+}
+
+
+
+
+
+void latestreleases() 
+{
+    System.out.println("\f");
+    System.out.println("LATEST RELEASES (2016): ");
+     String releases2016[]=new String [10];
+    String genre2016[]=new String [10];
+    double cost2016[]=new double[10];
+    int ctr2016=0;
+    for (int i=0; i<year.length; i++)
+    {
+        if (year[i]==2016)
+        {
+            releases2016[ctr2016]=game[i];
+            genre2016[ctr2016]=genre[i];
+            cost2016[ctr2016]=cost[i];
+            ctr2016++;
+          
+        }
+    }
+    
+    for (int i=0; i<ctr2016; i++)
+    {
+        
+        System.out.println((i+1)+ ". "+releases2016[i]);
+        System.out.println("Year: 2016");
+        System.out.println("Genre: " +genre2016[i]);
+        System.out.println("Cost: " +cost2016[i]);     
+    
+}
+System.out.print("Enter number you want to buy: ");
+int h= sc.nextInt();
+
+for (int i=0; i<ctr2016; i++)
+{
+    if (h==i+1)
+    {
+        System.out.println("\f");
+        System.out.println("You are buying this... It will be entered to the bill...");
+        System.out.println((i+1)+ ". "+releases2016[i]);
+        System.out.println("Year: 2016");
+        System.out.println("Genre: " +genre2016[i]);
+        System.out.println("Cost: " +cost2016[i]);  
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char choi=sc.next().charAt(0);
+                     if (choi=='y'|| choi=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=releases2016[i];
+                        billcost[ctr2]=cost2016[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (choi=='n'||choi=='N')
+                    {
+                       System.out.println("\f");
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Latest Releases menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        latestreleases();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+        }
+    if (h>ctr2016)
+    
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    
+   
+}
+
+void displaybygenre()
+{
+    System.out.println("Choose Genre: ");
+    System.out.println("1. Adventure");
+    System.out.println("2. Action");
+    System.out.println("3. Action and Adventure");
+    System.out.println("4. Sports");
+    System.out.println("5. First Person Shooter (FPS)");
+    int gchoice= sc.nextInt();
+    switch (gchoice)
+    {
+        case 1:
+        int adyear[]= new int[50];
+        double adcost[]= new double [50];
+        String adname[]= new String [50];
+        int ctrad=0;
+        for (int i=0; i<genre.length; i++)
+        {
+            if (genre[i].equalsIgnoreCase("Adventure"))
+            {
+                adyear[ctrad]=year[i];
+                adcost[ctrad]=cost[i];
+                adname[ctrad]=game[i];
+                ctrad++; 
+           }
+        }
+        System.out.println("\f");
+        for (int i=0; i<ctrad; i++)
+        {
+            
+            System.out.println((i+1)+ ". " + adname[i]);
+            System.out.println("Year: " +adyear[i]);
+            System.out.println("Genre: Adventure");
+            System.out.println("Cost: " +adcost[i]);
+        }
+        System.out.println("Enter number to buy:");
+        int h= sc.nextInt();
+      
+for (int i=0; i<ctrad; i++)
+{
+    if (h==i+1)
+    {
+        System.out.println("\f");
+        System.out.println((i+1)+ ". " + adname[i]);
+            System.out.println("Year: " +adyear[i]);
+            System.out.println("Genre: Adventure");
+            System.out.println("Cost: " +adcost[i]);
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char choi=sc.next().charAt(0);
+                     if (choi=='y'|| choi=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=adname[i];
+                        billcost[ctr2]=adcost[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (choi=='n'||choi=='N')
+                    {
+                        System.out.println("\f");
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Display by Genre menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        displaybygenre();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+            if (h>ctrad)
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    }
+    break;
+    
+    case 2:
+    int acyear[]= new int[50];
+        double accost[]= new double [50];
+        String acname[]= new String [50];
+        int ctrac=0;
+        for (int i=0; i<genre.length; i++)
+        {
+            if (genre[i].equalsIgnoreCase("Action"))
+            {
+                acyear[ctrac]=year[i];
+                accost[ctrac]=cost[i];
+                acname[ctrac]=game[i];
+                ctrac++; 
+           }
+        }
+        System.out.println("\f");
+        for (int i=0; i<ctrac; i++)
+        {
+            
+            System.out.println((i+1)+ ". " + acname[i]);
+            System.out.println("Year: " +acyear[i]);
+            System.out.println("Genre: Action");
+            System.out.println("Cost: " +accost[i]);
+        }
+        System.out.println("Enter number to buy:");
+        int f= sc.nextInt();
+        
+for (int i=0; i<ctrac; i++)
+{
+    if (f==i+1)
+    {
+        System.out.println("\f");
+        System.out.println((i+1)+ ". " + acname[i]);
+            System.out.println("Year: " +acyear[i]);
+            System.out.println("Genre: Action");
+            System.out.println("Cost: " +accost[i]);
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char cho=sc.next().charAt(0);
+                     if (cho=='y'|| cho=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=acname[i];
+                        billcost[ctr2]=accost[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (cho=='n'||cho=='N')
+                    {
+                        System.out.println("\f");
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Display by Genre menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        displaybygenre();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+            if (f>ctrac)
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    }
+    break;
+    
+    case 3:
+    
+       int acdyear[]= new int[50];
+        double acdcost[]= new double [50];
+        String acdname[]= new String [50];
+        int ctracd=0;
+        for (int i=0; i<genre.length; i++)
+        {
+            if (genre[i].equalsIgnoreCase("Action and Adventure")||genre[i].equalsIgnoreCase(" Action and Adventure ")||genre[i].equalsIgnoreCase(" Action and Adventure")||genre[i].equalsIgnoreCase("Action and Adventure "))
+            {
+                acdyear[ctracd]=year[i];
+                acdcost[ctracd]=cost[i];
+                acdname[ctracd]=game[i];
+                ctracd++; 
+           }
+        }
+        System.out.println("\f");
+        for (int i=0; i<ctracd; i++)
+        {
+            
+            System.out.println((i+1)+ ". " + acdname[i]);
+            System.out.println("Year: " +acdyear[i]);
+            System.out.println("Genre: Action and Adventure");
+            System.out.println("Cost: " +acdcost[i]);
+        }
+        System.out.println("Enter number to buy:");
+        int g= sc.nextInt();
+        
+for (int i=0; i<ctracd; i++)
+{
+    if (g==i+1)
+    {
+        System.out.println("\f");
+        System.out.println((i+1)+ ". " + acdname[i]);
+            System.out.println("Year: " +acdyear[i]);
+            System.out.println("Genre: Action and Adventure");
+            System.out.println("Cost: " +acdcost[i]);
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char ch=sc.next().charAt(0);
+                     if (ch=='y'|| ch=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=acdname[i];
+                        billcost[ctr2]=acdcost[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (ch=='n'||ch=='N')
+                    {
+                        System.out.println("\f");
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Display by Genre menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        displaybygenre();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+            if (g>ctracd)
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    }
+    break;
+    
+    case 4:
+    int spyear[]= new int[50];
+        double spcost[]= new double [50];
+        String spname[]= new String [50];
+        int ctrsp=0;
+        for (int i=0; i<genre.length; i++)
+        {
+            if (genre[i].equalsIgnoreCase("Sports"))
+            {
+                spyear[ctrsp]=year[i];
+                spcost[ctrsp]=cost[i];
+                spname[ctrsp]=game[i];
+                ctrsp++; 
+           }
+        }
+        System.out.println("\f");
+        for (int i=0; i<ctrsp; i++)
+        {
+            
+            System.out.println((i+1)+ ". " + spname[i]);
+            System.out.println("Year: " +spyear[i]);
+            System.out.println("Genre: Sports");
+            System.out.println("Cost: " +spcost[i]);
+        }
+        System.out.println("Enter number to buy:");
+        int k= sc.nextInt();
+        
+for (int i=0; i<ctrsp; i++)
+{
+    if (k==i+1)
+    {
+        System.out.println("\f");
+        System.out.println((i+1)+ ". " + spname[i]);
+            System.out.println("Year: " +spyear[i]);
+            System.out.println("Genre: Sports");
+            System.out.println("Cost: " +spcost[i]);
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char CH=sc.next().charAt(0);
+                     if (CH=='y'|| CH=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=spname[i];
+                        billcost[ctr2]=spcost[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (CH=='n'||CH=='N')
+                    {
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Display by Genre menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        displaybygenre();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+            if (k>ctrsp)
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    }
+    break;
+    
+    case 5: 
+    int fpsyear[]= new int[50];
+        double fpscost[]= new double [50];
+        String fpsname[]= new String [50];
+        int ctrfps=0;
+        for (int i=0; i<genre.length; i++)
+        {
+            if (genre[i].equalsIgnoreCase("First Person Shooter (FPS) ")||genre[i].equalsIgnoreCase(" First Person Shooter (FPS) ")|| genre[i].equalsIgnoreCase(" First Person Shooter (FPS)"))
+            {
+                fpsyear[ctrfps]=year[i];
+                fpscost[ctrfps]=cost[i];
+                fpsname[ctrfps]=game[i];
+                ctrfps++; 
+           }
+        }
+        System.out.println("\f");
+        for (int i=0; i<ctrfps; i++)
+        {
+            System.out.println((i+1)+ ". " + fpsname[i]);
+            System.out.println("Year: " +fpsyear[i]);
+            System.out.println("Genre: First Person Shooter (FPS)");
+            System.out.println("Cost: " +fpscost[i]);
+        }
+        System.out.println("Enter number to buy:");
+        int l= sc.nextInt();
+        
+for (int i=0; i<ctrfps; i++)
+{
+    if (l==i+1)
+    {
+        System.out.println("\f");
+        System.out.println((i+1)+ ". " + fpsname[i]);
+            System.out.println("Year: " +fpsyear[i]);
+            System.out.println("Genre: First Person Shooter (FPS) ");
+            System.out.println("Cost: " +fpscost[i]);
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char Ch=sc.next().charAt(0);
+                     if (Ch=='y'|| Ch=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=fpsname[i];
+                        billcost[ctr2]=fpscost[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (Ch=='n'||Ch=='N')
+                    {
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Display by Genre menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        displaybygenre();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+            if (l>ctrfps)
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        l=sc.nextInt();
+    }
+    }
+    break;
+default: System.out.println("Sorry! Wrong number! Enter number again: ");
+gchoice=sc.nextInt();    
+    
+}
+}
+
+
+
+void bill()
+{
+    System.out.println("\f");
+        System.out.println(" \t\t\t  _____   _______   ______              __  __ ");
+        System.out.println("  \t\t\t / ____| |__   __| |  ____|     /\\     |  \\/  |");
+        System.out.println("  \t\t\t | (___     | |    |  |__      /  \\    | \\  / |");
+        System.out.println("  \t\t\t \\___ \\     | |    |  __|     / /\\ \\   | |\\/| |");
+        System.out.println("  \t\t\t ____) |    | |    | |____   / ____ \\  | |  | |");
+        System.out.println("\t\t\t|_____/     |_|    |______| /_/    \\_\\ |_|  |_|");
+    
+        double x=Math.random();
+        String y=""+x;
+        int h=y.indexOf('.');
+        String receipt=y.substring(h+1,11);
+        System.out.println("Receipt No.: " +receipt);
+        System.out.print("Date: " +c.get(Calendar.DATE)+"/"+(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.YEAR));
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t Address: " +address);
+        System.out.println("Name: " +name);
+        System.out.println("**************************************************************************************************************");
+         System.out.println("ITEM  \t\t\t\t\t\t\t\t\t\t\t\t            COST" );
+         double sum=0;
+
+    for (int i=0; i<ctr1; i++)
+    {
+        System.out.println(billitems[i] +"                                                                                               " +billcost[i]);
+        sum+=billcost[i];
+    }
+    System.out.println("SUB-TOTAL:                                                                                               "+sum);
+    System.out.println("VAT @12% :                                                                                               "+(0.12*sum));
+    System.out.println("Service Charge @26%:                                                                                     "+(0.26*sum));
+    System.out.println("Internet Handling Fees:                                                                                  "+40);
+    System.out.println("TOTAL (ROUNDED):                                                                                         " + Math.rint((sum+(0.12*sum)+(0.26*sum)+40)));
+    System.out.println("**************************************************************************************************************");
+    
+    payment();
+    
+}
+    
+
+void payment()
+{
+    System.out.println("Payment Option: ");
+    System.out.println("1. Cash on Delivery");
+    System.out.println("2. Credit Card");
+    int g=sc.nextInt();
+    
+    if (g==1)
+    {
+    cod();
+        }
+    else if (g==2)
+    {
+       creditcard();
+}
+   
+
+else
+{
+    System.out.print("Wrong Number enter again....: ");
+    g=sc.nextInt();
+}
+  
+
+
+  System.out.println("Press 1 to continue the program for second person: ");
+    int z=sc.nextInt();
+    
+    if (z==1)
+    {
+        System.out.println("\f");
+    accept();   
+    
+}
+}
+
+void displaybyyear()
+{
+    System.out.println(name+ " welcome to STEAM®~ Display by Year section! ");
+    System.out.println("Choose year: ");
+    System.out.println("1. 2016");
+    System.out.println("2. 2015");
+    System.out.println("3. 2014");
+    System.out.println("4. 2013");
+    System.out.println("5. 2012");
+    System.out.println("6. 2011");
+    System.out.println("7. 2010");
+  
+    int ychoice=sc.nextInt();
+    switch(ychoice)
+    {
+        case 1:
+        latestreleases();
+        break;
+        
+        case 2:
+        games2015();
+        break;
+        
+        case 3:
+        games2014();
+        break;
+        
+        case 4:
+        games2013();
+        break;
+        
+        case 5:
+        games2012();
+        break;
+        
+        case 6:
+        games2011();
+        break;
+        
+        case 7:
+        games2010();
+        break;
+                
+        default: System.out.println("Wrong choice.... Please enter the number again....: ");
+        ychoice=sc.nextInt();
+        
+    
+}
+}
+
+
+
+void games2015()
+{
+    {
+    System.out.println("2015 RELEASES: ");
+     String releases2015[]=new String [100];
+    String genre2015[]=new String [100];
+    double cost2015[]=new double[100];
+    int ctr2015=0;
+    for (int i=0; i<year.length; i++)
+    {
+        if (year[i]==2015)
+        {
+            releases2015[ctr2015]=game[i];
+            genre2015[ctr2015]=genre[i];
+            cost2015[ctr2015]=cost[i];
+            ctr2015++;
+          
+        }
+    }
+    System.out.println("\f");
+    for (int i=0; i<ctr2015; i++)
+    {
+        System.out.println((i+1)+ ". "+releases2015[i]);
+        System.out.println("Year: 2015");
+        System.out.println("Genre: " +genre2015[i]);
+        System.out.println("Cost: " +cost2015[i]);     
+    
+}
+System.out.print("Enter number you want to buy: ");
+int h= sc.nextInt();
+
+for (int i=0; i<ctr2015; i++)
+{
+    if (h==i+1)
+    {
+        System.out.println("\f");
+        System.out.println("You are buying this... It will be entered to the bill...");
+        System.out.println((i+1)+ ". "+releases2015[i]);
+        System.out.println("Year: 2015");
+        System.out.println("Genre: " +genre2015[i]);
+        System.out.println("Cost: " +cost2015[i]);  
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char choi=sc.next().charAt(0);
+                     if (choi=='y'|| choi=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=releases2015[i];
+                        billcost[ctr2]=cost2015[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (choi=='n'||choi=='N')
+                    {
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Latest Releases menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        latestreleases();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+        }
+    if (h>ctr2015)
+    
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    
+   
+}
+}
+
+
+void games2014()
+{
+    {
+    System.out.println("2014 RELEASES: ");
+     String releases2014[]=new String [100];
+    String genre2014[]=new String [100];
+    double cost2014[]=new double[100];
+    int ctr2014=0;
+    for (int i=0; i<year.length; i++)
+    {
+        if (year[i]==2014)
+        {
+            releases2014[ctr2014]=game[i];
+            genre2014[ctr2014]=genre[i];
+            cost2014[ctr2014]=cost[i];
+            ctr2014++;
+          
+        }
+    }
+    System.out.println("\f");
+    for (int i=0; i<ctr2014; i++)
+    {
+        System.out.println((i+1)+ ". "+releases2014[i]);
+        System.out.println("Year: 2014");
+        System.out.println("Genre: " +genre2014[i]);
+        System.out.println("Cost: " +cost2014[i]);     
+    
+}
+System.out.print("Enter number you want to buy: ");
+int h= sc.nextInt();
+
+for (int i=0; i<ctr2014; i++)
+{
+    if (h==i+1)
+    {
+        System.out.println("\f");
+        System.out.println("You are buying this... It will be entered to the bill...");
+        System.out.println((i+1)+ ". "+releases2014[i]);
+        System.out.println("Year: 2015");
+        System.out.println("Genre: " +genre2014[i]);
+        System.out.println("Cost: " +cost2014[i]);  
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char choi=sc.next().charAt(0);
+                     if (choi=='y'|| choi=='Y')
+                     {
+                        System.out.println("\f");
+                        billitems[ctr1]=releases2014[i];
+                        billcost[ctr2]=cost2014[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (choi=='n'||choi=='N')
+                    {
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Latest Releases menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        latestreleases();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+        }
+    if (h>ctr2014)
+    
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    
+   
+}
+}
+
+void games2013()
+{
+    {
+    System.out.println("2013 RELEASES: ");
+     String releases2013[]=new String [100];
+    String genre2013[]=new String [100];
+    double cost2013[]=new double[100];
+    int ctr2013=0;
+    for (int i=0; i<year.length; i++)
+    {
+        if (year[i]==2013)
+        {
+            releases2013[ctr2013]=game[i];
+            genre2013[ctr2013]=genre[i];
+            cost2013[ctr2013]=cost[i];
+            ctr2013++;
+          
+        }
+    }
+    System.out.println("\f");
+    for (int i=0; i<ctr2013; i++)
+    {
+        System.out.println((i+1)+ ". "+releases2013[i]);
+        System.out.println("Year: 2013");
+        System.out.println("Genre: " +genre2013[i]);
+        System.out.println("Cost: " +cost2013[i]);     
+    
+}
+System.out.print("Enter number you want to buy: ");
+int h= sc.nextInt();
+
+for (int i=0; i<ctr2013; i++)
+{
+    if (h==i+1)
+    {
+        System.out.println("\f");
+        System.out.println("You are buying this... It will be entered to the bill...");
+        System.out.println((i+1)+ ". "+releases2013[i]);
+        System.out.println("Year: 2013");
+        System.out.println("Genre: " +genre2013[i]);
+        System.out.println("Cost: " +cost2013[i]);  
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char choi=sc.next().charAt(0);
+                     if (choi=='y'|| choi=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=releases2013[i];
+                        billcost[ctr2]=cost2013[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (choi=='n'||choi=='N')
+                    {
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Latest Releases menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        latestreleases();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+        }
+    if (h>ctr2013)
+    
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    
+   
+}
+}
+
+void games2012()
+{
+    {
+    System.out.println("2012 RELEASES: ");
+     String releases2012[]=new String [100];
+    String genre2012[]=new String [100];
+    double cost2012[]=new double[100];
+    int ctr2012=0;
+    for (int i=0; i<year.length; i++)
+    {
+        if (year[i]==2012)
+        {
+            releases2012[ctr2012]=game[i];
+            genre2012[ctr2012]=genre[i];
+            cost2012[ctr2012]=cost[i];
+            ctr2012++;
+          
+        }
+    }
+    System.out.println("\f");
+    for (int i=0; i<ctr2012; i++)
+    {
+        System.out.println((i+1)+ ". "+releases2012[i]);
+        System.out.println("Year: 2012");
+        System.out.println("Genre: " +genre2012[i]);
+        System.out.println("Cost: " +cost2012[i]);     
+    
+}
+System.out.print("Enter number you want to buy: ");
+int h= sc.nextInt();
+
+for (int i=0; i<ctr2012; i++)
+{
+    if (h==i+1)
+    {
+        System.out.println("\f");
+        System.out.println("You are buying this... It will be entered to the bill...");
+        System.out.println((i+1)+ ". "+releases2012[i]);
+        System.out.println("Year: 2012");
+        System.out.println("Genre: " +genre2012[i]);
+        System.out.println("Cost: " +cost2012[i]);  
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char choi=sc.next().charAt(0);
+                     if (choi=='y'|| choi=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=releases2012[i];
+                        billcost[ctr2]=cost2012[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (choi=='n'||choi=='N')
+                    {
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Latest Releases menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        latestreleases();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+        }
+    if (h>ctr2012)
+    
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    
+   
+} 
+
+}
+
+void games2011()
+{ {
+    System.out.println("2011 RELEASES: ");
+     String releases2011[]=new String [100];
+    String genre2011[]=new String [100];
+    double cost2011[]=new double[100];
+    int ctr2011=0;
+    for (int i=0; i<year.length; i++)
+    {
+        if (year[i]==2011)
+        {
+            releases2011[ctr2011]=game[i];
+            genre2011[ctr2011]=genre[i];
+            cost2011[ctr2011]=cost[i];
+            ctr2011++;
+          
+        }
+    }
+    System.out.println("\f");
+    for (int i=0; i<ctr2011; i++)
+    {
+        System.out.println((i+1)+ ". "+releases2011[i]);
+        System.out.println("Year: 2011");
+        System.out.println("Genre: " +genre2011[i]);
+        System.out.println("Cost: " +cost2011[i]);     
+    
+}
+System.out.print("Enter number you want to buy: ");
+int h= sc.nextInt();
+
+for (int i=0; i<ctr2011; i++)
+{
+    if (h==i+1)
+    {
+        System.out.println("\f");
+        System.out.println("You are buying this... It will be entered to the bill...");
+        System.out.println((i+1)+ ". "+releases2011[i]);
+        System.out.println("Year: 2011");
+        System.out.println("Genre: " +genre2011[i]);
+        System.out.println("Cost: " +cost2011[i]);  
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char choi=sc.next().charAt(0);
+                     if (choi=='y'|| choi=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=releases2011[i];
+                        billcost[ctr2]=cost2011[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (choi=='n'||choi=='N')
+                    {
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Latest Releases menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        latestreleases();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+        }
+    if (h>ctr2011)
+    
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    
+   
+}
+}
+
+void games2010()
+{ {
+    System.out.println("2010 RELEASES: ");
+     String releases2010[]=new String [100];
+    String genre2010[]=new String [100];
+    double cost2010[]=new double[100];
+    int ctr2010=0;
+    for (int i=0; i<year.length; i++)
+    {
+        if (year[i]<2010)
+        {
+            releases2010[ctr2010]=game[i];
+            genre2010[ctr2010]=genre[i];
+            cost2010[ctr2010]=cost[i];
+            ctr2010++;
+          
+        }
+    }
+    System.out.println("\f");
+    for (int i=0; i<ctr2010; i++)
+    {
+        System.out.println((i+1)+ ". "+releases2010[i]);
+        System.out.println("Year: 2010");
+        System.out.println("Genre: " +genre2010[i]);
+        System.out.println("Cost: " +cost2010[i]);     
+    
+}
+System.out.print("Enter number you want to buy: ");
+int h= sc.nextInt();
+
+for (int i=0; i<ctr2010; i++)
+{
+    if (h==i+1)
+    {
+        System.out.println("\f");
+        System.out.println("You are buying this... It will be entered to the bill...");
+        System.out.println((i+1)+ ". "+releases2010[i]);
+        System.out.println("Year: 2010");
+        System.out.println("Genre: " +genre2010[i]);
+        System.out.println("Cost: " +cost2010[i]);  
+        System.out.println("Do you want to buy this item? (Y/N): ");
+                    char choi=sc.next().charAt(0);
+                     if (choi=='y'|| choi=='Y')
+                     {
+                        System.out.println("\f");
+                         billitems[ctr1]=releases2010[i];
+                        billcost[ctr2]=cost2010[i];
+                        ctr1++;
+                        ctr2++;
+                        System.out.println("Thank you!");
+                        System.out.println("Press 1 to generate the bill....");
+                        
+                        System.out.println("Press 2 to restart....");
+                        int j=sc.nextInt();
+                        if (j==1)
+                        bill();
+                        if (j==2)
+                        {
+                             System.out.println("\f");
+                             choice();
+                            }
+                        break;
+                     }
+                    else if (choi=='n'||choi=='N')
+                    {
+                        System.out.println("Press 1 to restart from beginning");
+                        System.out.println("Press 2 to restart Latest Releases menu");
+                        int x=sc.nextInt();
+                        if (x==1)
+                        {
+                            System.out.println("\f");
+                            choice();
+                        }
+                        else if (x==2)
+                        {
+                            System.out.println("\f");
+                        latestreleases();
+                    }
+                       else
+                        {
+                        System.out.print("Wrong number.... Enter again");
+                        x=sc.nextInt();
+                        break;
+                    }
+                }
+            }
+        }
+    if (h>ctr2010)
+    
+    {
+        System.out.println("Sorry! Wrong number entered....");
+        System.out.println("Enter number again!");
+        h=sc.nextInt();
+    }
+    
+   
+}
+
+}
+
+void cod()
+{
+System.out.println("Your products will be delivered at: " + address);
+    System.out.println("Or Press 1 to choose a different payment option");
+            int j= sc.nextInt();
+            if (j==1)
+            payment();
+}
+
+
+
+void creditcard()
+{
+ System.out.println("Enter Credit Card Number: ");
+        String cc= sc.next();
+        boolean valid=false;
+        for (int i=0; i<cc.length(); i++)
+        {
+            char ch= cc.charAt(i);
+            
+            if (Character.isDigit(ch)==true && cc.length()==16)
+            valid=true;
+        }
+        if (valid==true)
+        {
+            cvv();
+                      
+         }
+
+        else
+        {
+        System.out.println("WRONG CREDIT CARD NUMBER");
+        System.out.println("Press 1 to choose a different payment option....");
+        System.out.println("Press any other number to enter Credit Card Number Again");
+        String k= sc.next();
+        if (Long.valueOf(k)==1)
+        payment();
+        else
+        creditcard();
+        
+    }
+}
+
+
+void cvv()
+{
+System.out.println("Enter CVV: ");
+            String cvv=sc.next();
+             boolean validity=false;
+        for (int i=0; i<cvv.length(); i++)
+        {
+            char CH= cvv.charAt(i);
+            
+            if (Character.isDigit(CH)==true && cvv.length()==3)
+            validity=true;
+        }
+        
+        if (validity==true)
+        {
+            System.out.println("Payment Received! Your order will be delivered at " +address);
+        }
+        else
+        {
+            System.out.println("Wrong CVV");
+            System.out.println("Press 1 to choose a different payment option.....");
+            System.out.println("Enter any other number to enter CVV again");
+            String j= sc.next();
+            if (Integer.valueOf(j)==1)
+            payment();
+            else
+           cvv();
+}
+}
+
+static void main()
+{
+    STEA_STORE obj= new STEA_STORE();
+    obj.accept();
+}
+
+
+
+}
